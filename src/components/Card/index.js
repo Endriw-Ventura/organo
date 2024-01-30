@@ -1,9 +1,9 @@
 import './Card.css'
 
-function Card({ nome, cargo, imagem }){
+function Card({ nome, cargo, imagem, corPrimaria }){
     return(
     <div className='card'>
-        <div className='cabecalho'>
+        <div style={{ backgroundColor: corPrimaria }} className='cabecalho'>
             <img src={imagem} alt={nome}/>
         </div>
         <div className='rodape'>
