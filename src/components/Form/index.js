@@ -1,22 +1,10 @@
 import './Formulario.css'
 import TextField from '../TextField'
-import DropDownList from '../DropDownList/DropDownList'
-import Button from '../Button/Button'
+import DropDownList from '../DropDownList'
+import Button from '../Button'
 import { useState } from 'react'
 
 function Formulario(props){
-
-const itens = [
-    'Programação',
-    'UX & Design',
-    'Data Science',
-    'Front-End',
-    'Back-End',
-    'Mobile',
-    'DevOps',
-    'Inovação & Gestão'
-]
-
 //hooks
 const [nome, setNome] = useState('')
 const [cargo, setCargo] = useState('')
@@ -30,7 +18,12 @@ function onSave(event){
         cargo,
         imagem,
         time
-    })
+    });
+
+    setNome('')
+    setImagem('')
+    setTime('')
+    setCargo('')
 }
 
     return(
@@ -62,7 +55,7 @@ function onSave(event){
                 valor={time}
                 customEvent={valor => setTime(valor)}
                 label='Time' 
-                itens={itens}/>
+                itens={props.itens}/>
 
                 <Button>
                     Criar Card
