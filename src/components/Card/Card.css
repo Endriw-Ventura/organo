@@ -35,3 +35,9 @@
     position: relative;
     bottom: -50px;
 }
+
+.card .deletar{
+    position: absolute;
+    right: -10px;
+    top: -10px;
+}

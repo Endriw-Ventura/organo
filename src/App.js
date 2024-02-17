@@ -56,10 +56,16 @@ function createUser(user){
   setUsers([...users, user])
 }
 
+function deleteUser(user){
+  console.log(user)
+}
+
   return (
     <div className="App">
       <Banner />
-      <Formulario createUser={user => createUser(user)} itens={times.map(time => time.nome)}/> 
+      <Formulario 
+      createUser={user => createUser(user)} 
+      itens={times.map(time => time.nome)}/> 
       {times.map(time => 
       <Group
        key={time.nome} 
@@ -67,6 +73,7 @@ function createUser(user){
        corPrimaria={time.corPrimaria} 
        corSecundaria={time.corSecundaria}
        itens={users.filter(user => user.time === time.nome)}
+       deleteUser={user => deleteUser(user)}
        />)}
        <Footer/>
     </div>
