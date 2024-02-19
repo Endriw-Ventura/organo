@@ -3,50 +3,51 @@ import Banner from "./components/Banner";
 import Formulario from "./components/Form";
 import Group from "./components/Group";
 import Footer from "./components/Footer";
+import { v4 as uuid } from "uuid";
 
 function App() {
-  const times = [
+  const [teams, setTeams] = useState([
     {
-      nome: "Programação",
-      corPrimaria: "#57C278",
-      corSecundaria: "#D9F7E9",
+      id: uuid(),
+      name: "Programação",
+      color: "#57C278",
     },
     {
-      nome: "UX & Design",
-      corPrimaria: "#DB6EBF",
-      corSecundaria: "#FAE9F5",
+      id: uuid(),
+      name: "UX & Design",
+      color: "#DB6EBF",
     },
     {
-      nome: "Data Science",
-      corPrimaria: "#A6D157",
-      corSecundaria: "#F0F8E2",
+      id: uuid(),
+      name: "Data Science",
+      color: "#A6D157",
     },
     {
-      nome: "Front-End",
-      corPrimaria: "#82CFFA",
-      corSecundaria: "#E8F8FF",
+      id: uuid(),
+      name: "Front-End",
+      color: "#82CFFA",
     },
     {
-      nome: "Back-End",
-      corPrimaria: "#6D1C0B",
-      corSecundaria: "#90564A",
+      id: uuid(),
+      name: "Back-End",
+      color: "#6D1C0B",
     },
     {
-      nome: "Mobile",
-      corPrimaria: "#FFBA05",
-      corSecundaria: "#FFF5D9",
+      id: uuid(),
+      name: "Mobile",
+      color: "#FFBA05",
     },
     {
-      nome: "DevOps",
-      corPrimaria: "#E06B69",
-      corSecundaria: "#FDE7E8",
+      id: uuid(),
+      name: "DevOps",
+      color: "#E06B69",
     },
     {
-      nome: "Inovação & Gestão",
-      corPrimaria: "#FF8A29",
-      corSecundaria: "#FFEEDF",
+      id: uuid(),
+      name: "Inovação & Gestão",
+      color: "#FF8A29",
     },
-  ];
+  ]);
 
   const [users, setUsers] = useState([]);
 
@@ -54,25 +55,41 @@ function App() {
     setUsers([...users, user]);
   }
 
-  function deleteUser(user) {
-    console.log(user);
+  function createTeam(newTeam) {
+    setTeams([...teams, { ...newTeam, id: uuid() }]);
+  }
+
+  const changeColor = (color, id) => {
+    setTeams(
+      teams.map((team) => {
+        if (team.id === id) {
+          team.color = color;
+        }
+        return team;
+      })
+    );
+  };
+
+  function deleteUser(id) {
+    setUsers(users.filter((user) => user.id !== id));
   }
 
   return (
     <div className="App">
       <Banner />
       <Formulario
+        createTeam={createTeam}
         createUser={(user) => createUser(user)}
-        itens={times.map((time) => time.nome)}
+        teams={teams}
       />
-      {times.map((time) => (
+      {teams.map((team) => (
         <Group
-          key={time.nome}
-          nome={time.nome}
-          corPrimaria={time.corPrimaria}
-          corSecundaria={time.corSecundaria}
-          itens={users.filter((user) => user.time === time.nome)}
-          deleteUser={(user) => deleteUser(user)}
+          key={team.id}
+          name={team.name}
+          color={team.color}
+          users={users.filter((user) => user.team === team.name)}
+          deleteUser={deleteUser}
+          changeColor={(event) => changeColor(event.target.value, team.id)}
         />
       ))}
       <Footer />

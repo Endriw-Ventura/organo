@@ -1,23 +1,19 @@
-import './Card.css'
-import { AiFillCloseCircle } from 'react-icons/ai';
+import "./Card.css";
+import { AiFillCloseCircle } from "react-icons/ai";
 
-function Card({ nome, cargo, imagem, corPrimaria, deleteUser }){
-    return(
-    <div className='card'>
-        <AiFillCloseCircle size={25} className='deletar' onClick={deleteUser}/>
-        <div style={{ backgroundColor: corPrimaria }} className='cabecalho'>
-            <img src={imagem} alt={nome}/>
-        </div>
-        <div className='rodape'>
-            <h4>
-                {nome}
-            </h4>
-            <h5>
-                {cargo}
-            </h5>
-        </div>
-    </div>    
-    )
+function Card({ name, field, image, color, deleteUser }) {
+  return (
+    <div className="card">
+      <AiFillCloseCircle size={25} className="deletar" onClick={deleteUser} />
+      <div style={{ backgroundColor: color }} className="cabecalho">
+        <img src={image} alt={name} />
+      </div>
+      <div className="rodape">
+        <h4>{name}</h4>
+        <h5>{field}</h5>
+      </div>
+    </div>
+  );
 }
 
-export default Card
+export default Card;

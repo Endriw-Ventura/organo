@@ -1,15 +1,15 @@
 import "./DropDownList.css";
 
-function DropDownList(props) {
+function DropDownList({ value, customEvent, label, teams }) {
   return (
     <div className="dropdownlist">
-      <label>{props.label}</label>
+      <label>{label}</label>
       <select
-        value={props.valor}
-        onChange={(event) => props.customEvent(event.target.value)}
+        value={value}
+        onChange={(event) => customEvent(event.target.value)}
       >
-        {props.itens.map((item) => (
-          <option key={item}>{item}</option>
+        {teams.map((team) => (
+          <option key={team.id}>{team.name}</option>
         ))}
       </select>
     </div>

@@ -1,17 +1,23 @@
-.group{
-text-align: center;
-padding: 32px;
+.group {
+  text-align: center;
+  padding: 32px;
+  position: relative;
 }
 
-.group h3{
-font-size: 32px;
-border-bottom: 4px solid;
-padding-bottom: 8px;
+.group input {
+  position: absolute;
+  right: 35px;
 }
 
-.group .groupup{
-    display: flex;
-    justify-content: space-around;
-    flex-direction: row;
-    flex-wrap: wrap;
+.group h3 {
+  font-size: 32px;
+  border-bottom: 4px solid;
+  padding-bottom: 8px;
+}
+
+.group .groupup {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
 }

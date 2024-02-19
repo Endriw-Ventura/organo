@@ -1,29 +1,44 @@
 import "./Formulario.css";
-import TextField from "../TextField";
+import InputField from "../InputField";
 import DropDownList from "../DropDownList";
 import Button from "../Button";
 import { useState } from "react";
+import { v4 as uuid } from "uuid";
 
-function Formulario(props) {
+function Formulario({ createTeam, createUser, teams }) {
   //hooks
-  const [nome, setNome] = useState("");
-  const [cargo, setCargo] = useState("");
-  const [imagem, setImagem] = useState("");
-  const [time, setTime] = useState("Programação"); //default value
+  const [name, setName] = useState("");
+  const [field, setField] = useState("");
+  const [image, setImage] = useState("");
+  const [teamColor, setTeamColor] = useState("");
+  const [teamName, setTeamName] = useState("");
+  const [team, setTeam] = useState("Programação"); //default value
 
   function onSave(event) {
     event.preventDefault();
-    props.createUser({
-      nome,
-      cargo,
-      imagem,
-      time,
+    createUser({
+      id: uuid(),
+      name,
+      field,
+      image,
+      team,
     });
 
-    setNome("");
-    setImagem("");
-    setTime("");
-    setCargo("");
+    setName("");
+    setImage("");
+    setTeam("Programação"); //default value
+    setField("");
+  }
+
+  function onCreateTeam(event) {
+    event.preventDefault();
+    createTeam({
+      name: teamName,
+      color: teamColor,
+    });
+
+    setTeamName("");
+    setTeamColor("");
   }
 
   return (
@@ -31,35 +46,56 @@ function Formulario(props) {
       <form onSubmit={onSave}>
         <h2>Preencha os dados para criar o card do colaborador:</h2>
 
-        <TextField
-          valor={nome}
-          customEvent={(valor) => setNome(valor)}
+        <InputField
+          value={name}
+          customEvent={(value) => setName(value)}
           label="Nome"
           placeholder="Digite o seu nome"
         />
 
-        <TextField
-          valor={cargo}
-          customEvent={(valor) => setCargo(valor)}
+        <InputField
+          value={field}
+          customEvent={(value) => setField(value)}
           label="Cargo"
           placeholder="Digite o seu cargo"
         />
 
-        <TextField
-          valor={imagem}
-          customEvent={(valor) => setImagem(valor)}
+        <InputField
+          value={image}
+          customEvent={(value) => setImage(value)}
           label="Imagem"
           placeholder="Informe a URL da imagem"
         />
 
         <DropDownList
-          valor={time}
-          customEvent={(valor) => setTime(valor)}
+          value={team}
+          customEvent={(value) => setTeam(value)}
           label="Time"
-          itens={props.itens}
+          teams={teams}
         />
 
         <Button>Criar Card</Button>
+      </form>
+
+      <form onSubmit={onCreateTeam}>
+        <h2>Preencha os dados para criar um time:</h2>
+
+        <InputField
+          value={teamName}
+          customEvent={(value) => setTeamName(value)}
+          label="Nome"
+          placeholder="Digite o nome do time"
+        />
+
+        <InputField
+          type="color"
+          value={teamColor}
+          customEvent={(value) => setTeamColor(value)}
+          label="Cor"
+          placeholder="Escolha a cor do time"
+        />
+
+        <Button>Criar Time</Button>
       </form>
     </section>
   );
