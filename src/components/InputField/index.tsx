@@ -1,6 +1,14 @@
 import "./InputField.css";
 
-function TextField({ type = "text", label, value, placeholder, customEvent }) {
+interface TextFieldProps{
+  customEvent: (value: string) => void,
+  placeholder: string,
+  label: string,
+  value: string,
+  type: string
+}
+
+function TextField({ type = "text", label, value, placeholder, customEvent } : TextFieldProps) {
   return (
     <div className={`inputField-${type}`}>
       <label> {label} </label>
