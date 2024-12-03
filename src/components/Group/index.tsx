@@ -1,8 +1,17 @@
 import Card from "../Card";
 import hexToRgba from "hex-to-rgba";
 import "./Group.css";
+import { IUser } from "../../shared/interfaces/IUser";
 
-function Group({ color, name, users, deleteUser, changeColor }) {
+interface GroupProps{
+  color: string,
+  name: string,
+  deleteUser: (id: Number) => void,
+  changeColor: () => void,
+  users: IUser[]
+}
+
+function Group({ color, name, users, deleteUser, changeColor } : GroupProps) {
   return (
     users.length > 0 && (
       <section
@@ -14,7 +23,7 @@ function Group({ color, name, users, deleteUser, changeColor }) {
         <div className="groupup">
           {users.map((user) => (
             <Card
-              key={user.id}
+              key={user.id.toString()}
               name={user.name}
               field={user.field}
               color={color}
