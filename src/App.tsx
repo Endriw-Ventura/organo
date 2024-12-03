@@ -4,9 +4,11 @@ import Formulario from "./components/Form";
 import Group from "./components/Group";
 import Footer from "./components/Footer";
 import { v4 as uuid } from "uuid";
+import { IUser } from "./shared/interfaces/IUser";
+import { ITeam } from "./shared/interfaces/ITeam";
 
 function App() {
-  const [teams, setTeams] = useState([
+  const [teams, setTeams] = useState<ITeam[]>([
     {
       id: uuid(),
       name: "Programação",
@@ -49,17 +51,21 @@ function App() {
     },
   ]);
 
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState<IUser[]>([]);
 
-  function createUser(user) {
+  function createUser(user: IUser) {
     setUsers([...users, user]);
   }
 
-  function createTeam(newTeam) {
+  function createTeam(newTeam: ITeam) {
     setTeams([...teams, newTeam]);
   }
 
-  const changeColor = (color, id) => {
+const handleChangeColor = (teamId: string) => (color: string) => {
+  changeColor(color, teamId);
+};
+
+  const changeColor = (color: string, id: string) => {
     setTeams(
       teams.map((team) => {
         if (team.id === id) {
@@ -70,8 +76,8 @@ function App() {
     );
   };
 
-  function deleteUser(id) {
-    setUsers(users.filter((user) => user.id !== id));
+  function deleteUser(id: string) {
+    setUsers(users.filter((user: IUser) => user.id !== id));
   }
 
   return (
@@ -87,9 +93,9 @@ function App() {
           key={team.id}
           name={team.name}
           color={team.color}
-          users={users.filter((user) => user.team === team.name)}
+          users={users.filter((user: IUser) => user.team === team.name)}
           deleteUser={deleteUser}
-          changeColor={(event) => changeColor(event.target.value, team.id)}
+          changeColor={handleChangeColor(team.id)}
         />
       ))}
       <Footer

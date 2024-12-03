@@ -2,12 +2,13 @@ import Card from "../Card";
 import hexToRgba from "hex-to-rgba";
 import "./Group.css";
 import { IUser } from "../../shared/interfaces/IUser";
+import { ITeam } from "../../shared/interfaces/ITeam";
 
 interface GroupProps{
   color: string,
   name: string,
   deleteUser: (id: string) => void,
-  changeColor: () => void,
+  changeColor: (color: string) => void;
   users: IUser[]
 }
 
@@ -18,7 +19,7 @@ function Group({ color, name, users, deleteUser, changeColor } : GroupProps) {
         className="group"
         style={{ backgroundColor: hexToRgba(color, "0.5") }}
       >
-        <input type="color" value={color} onChange={changeColor}></input>
+        <input type="color" value={color} onChange={(event) => changeColor(event.target.value)}></input>
         <h3 style={{ borderBottomColor: color }}>{name}</h3>
         <div className="groupup">
           {users.map((user) => (
