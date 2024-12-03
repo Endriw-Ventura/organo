@@ -1,7 +1,15 @@
 import "./Card.css";
 import { AiFillCloseCircle } from "react-icons/ai";
 
-function Card({ name, field, image, color, deleteUser }) {
+interface CardProps{
+  name: string,
+  field: string,
+  image: string,
+  color: string,
+  deleteUser: () => void
+}
+
+function Card({ name, field, image, color, deleteUser }: CardProps) {
   return (
     <div className="card">
       <AiFillCloseCircle size={25} className="deletar" onClick={deleteUser} />
