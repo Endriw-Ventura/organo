@@ -2,7 +2,7 @@ import './Button.css'
 import React, { ReactElement } from 'react'
 
 interface ButtonProps{
-    children: ReactElement
+    children: ReactElement | string
 }
 
 function Button(props: ButtonProps){

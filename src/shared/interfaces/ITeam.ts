@@ -1,5 +1,5 @@
 export interface ITeam{
-    id: Number,
+    id: string,
     name: string,
     color: string
 }

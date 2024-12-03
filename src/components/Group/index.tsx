@@ -6,7 +6,7 @@ import { IUser } from "../../shared/interfaces/IUser";
 interface GroupProps{
   color: string,
   name: string,
-  deleteUser: (id: Number) => void,
+  deleteUser: (id: string) => void,
   changeColor: () => void,
   users: IUser[]
 }

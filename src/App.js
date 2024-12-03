@@ -56,7 +56,7 @@ function App() {
   }
 
   function createTeam(newTeam) {
-    setTeams([...teams, { ...newTeam, id: uuid() }]);
+    setTeams([...teams, newTeam]);
   }
 
   const changeColor = (color, id) => {

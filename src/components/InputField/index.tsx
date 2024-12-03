@@ -5,7 +5,7 @@ interface TextFieldProps{
   placeholder: string,
   label: string,
   value: string,
-  type: string
+  type?: string
 }
 
 function TextField({ type = "text", label, value, placeholder, customEvent } : TextFieldProps) {

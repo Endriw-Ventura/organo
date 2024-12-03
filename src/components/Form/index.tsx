@@ -4,8 +4,16 @@ import DropDownList from "../DropDownList";
 import Button from "../Button";
 import { useState } from "react";
 import { v4 as uuid } from "uuid";
+import { IUser } from "../../shared/interfaces/IUser";
+import { ITeam } from "../../shared/interfaces/ITeam";
 
-function Formulario({ createTeam, createUser, teams }) {
+interface FormProps {
+  createUser: (user: IUser) => void,
+  createTeam: (team: ITeam) => void,
+  teams: ITeam[]
+}
+
+function Formulario({ createTeam, createUser, teams }: FormProps) {
   //hooks
   const [name, setName] = useState("");
   const [field, setField] = useState("");
@@ -14,7 +22,7 @@ function Formulario({ createTeam, createUser, teams }) {
   const [teamName, setTeamName] = useState("");
   const [team, setTeam] = useState("Programação"); //default value
 
-  function onSave(event) {
+  function onSave(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     createUser({
       id: uuid(),
@@ -30,9 +38,10 @@ function Formulario({ createTeam, createUser, teams }) {
     setField("");
   }
 
-  function onCreateTeam(event) {
+  function onCreateTeam(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     createTeam({
+      id: uuid(), 
       name: teamName,
       color: teamColor,
     });

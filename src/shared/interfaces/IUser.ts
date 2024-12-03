@@ -1,7 +1,7 @@
 export interface IUser{
-    id: Number,
+    id: string,
     name: string,
     field: string,
     image: string,
-    team: string
+    team?: string
 }
