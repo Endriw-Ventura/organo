@@ -76,7 +76,7 @@ function App() {
 
   return (
     <div className="App">
-      <Banner />
+      <Banner src="images/banner.png" alt="banner.png" />
       <Formulario
         createTeam={createTeam}
         createUser={(user) => createUser(user)}
@@ -92,7 +92,17 @@ function App() {
           changeColor={(event) => changeColor(event.target.value, team.id)}
         />
       ))}
-      <Footer />
+      <Footer
+        srcLogo="images/logo.png"
+        altLogo="logo.png"
+        srcFBIcon="images/fb.png"
+        srcIGIcon="images/ig.png"
+        srcTWIcon="images/tw.png"
+        altFBIcon="fb.png"
+        altIGIcon="ig.png"
+        altTWIcon="tw.png"
+        text="Desenvolvido por Endriw Ventura."
+      />
     </div>
   );
 }
