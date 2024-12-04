@@ -2,7 +2,6 @@ import Card from "../Card";
 import hexToRgba from "hex-to-rgba";
 import "./Group.css";
 import { IUser } from "../../shared/interfaces/IUser";
-import { ITeam } from "../../shared/interfaces/ITeam";
 
 interface GroupProps{
   color: string,

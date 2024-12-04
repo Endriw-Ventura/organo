@@ -18,7 +18,7 @@ function Formulario({ createTeam, createUser, teams }: FormProps) {
   const [name, setName] = useState("");
   const [field, setField] = useState("");
   const [image, setImage] = useState("");
-  const [teamColor, setTeamColor] = useState("");
+  const [teamColor, setTeamColor] = useState("#000000");
   const [teamName, setTeamName] = useState("");
   const [team, setTeam] = useState("Programação"); //default value
 
@@ -47,7 +47,7 @@ function Formulario({ createTeam, createUser, teams }: FormProps) {
     });
 
     setTeamName("");
-    setTeamColor("");
+    setTeamColor("#000000");
   }
 
   return (
