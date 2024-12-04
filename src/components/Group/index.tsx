@@ -13,7 +13,7 @@ interface GroupProps{
 
 function Group({ color, name, users, deleteUser, changeColor } : GroupProps) {
   return (
-    users.length > 0 && (
+    users.length > 0 ? (
       <section
         className="group"
         style={{ backgroundColor: hexToRgba(color, "0.5") }}
@@ -33,7 +33,7 @@ function Group({ color, name, users, deleteUser, changeColor } : GroupProps) {
           ))}
         </div>
       </section>
-    )
+    ) : <></>
   );
 }
 
